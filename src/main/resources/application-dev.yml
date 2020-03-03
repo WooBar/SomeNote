@@ -1,0 +1,154 @@
+spring:
+  servlet:
+    session:
+      timeout: 30ms
+  mvc:
+    #    view:
+    #      prefix: classpath:/templates/
+    #      suffix: .jsp
+    ##配置静态资源访问路径
+    static-path-pattern: /webapp/**
+
+
+
+  #开发时关闭页面缓存,不然无法看到实时页面
+  thymeleaf:
+    cache: false
+  #配置Druid数据源
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    url: jdbc:mysql://47.94.14.70:3306/test?useUnicode=true&characterEncoding=utf8&serverTimezone=GMT%2B8
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    platform: mysql
+    druid:
+      initial-size: 5  # 初始化大 小
+      min-idle: 5  # 最小
+      max-active: 100  # 最大
+      max-wait: 60000  # 连接超时时间
+      time-between-eviction-runs-millis: 60000  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      min-evictable-idle-time-millis: 300000  # 指定一个空闲连接最少空闲多久后可被清除，单位是毫秒
+      validationQuery: SELECT 'x'
+      test-while-idle: true  # 当连接空闲时，是否执行连接测试
+      test-on-borrow: false  # 当从连接池借用连接时，是否测试该连接
+      test-on-return: false  # 在连接归还到连接池时是否测试该连接
+      filters: config,wall,stat  # 配置监控统计拦截的filters，去掉后监控界面sql无法统计，'wall'用于防火墙
+      poolPreparedStatements: true
+      maxPoolPreparedStatementPerConnectionSize: 20
+      maxOpenPreparedStatements: 20
+      connectionProperties: druid.stat.slowSqlMillis=200;druid.stat.logSlowSql=true;config.decrypt=true
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        exclusions: /druid/*,*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico
+        session-stat-enable: true
+        session-stat-max-count: 10
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: 123
+    aop:
+      proxy-target-class: true
+      auto: true
+
+    cache:
+      type: redis
+    redis:
+      lettuce:
+      pool:
+        max-wait: 100
+        max-active: 200
+        max-idle: 10
+        min-idle: -1
+      host: 192.144.129.245
+      port: 6379
+      password:
+      timeout: 1000
+
+
+#    thymeleaf:
+#        prefix: classpath:/static/
+#        suffix: .html
+#    freemarker:
+#        suffix: .html
+#        template-loader-path: classpath:/templates/
+#        mode: LEGACYHTML5
+#    cash: false
+#rabbitmq
+#    rabbitmq:
+#      host: 127.0.0.1
+#      port: 5672
+#      username: root
+#      password: root
+#      virtual-host: ykh_vhosts
+
+
+
+# Mybatis配置
+#mybatis:
+
+#    configuration:
+#        map-underscore-to-camel-case: true
+#    type-aliases-package: com.duanxiupign   #配置别名
+
+mybatis:
+  # model的包
+  type-aliases-package:
+  mapperLocations: classpath:duanxp/**/*.xml
+  configuration:
+    #　　# 开启驼峰uName自动映射到u_name
+    map-underscore-to-camel-case: true
+
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+server:
+  port: 8086
+  servlet:
+    context-path: /
+#  servlet:
+#    context-path: /index
+
+# info 配置项（/actuator/info）
+#info:
+#  author: xiaop1ng
+#  email: jianchaoping@gmail.com
+#  version: 1.0.0
+#
+## 配置 actuator 加载所有的端点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      show-details: always
+info:
+  head: head
+  body: body
+management:
+  endpoints:
+    web:
+      exposure:
+        #加载所有的端点，默认只加载了info、health
+        include: '*'
+  endpoint:
+    health:
+      show-details: always
+    #可以关闭指定的端点
+    shutdown:
+      enabled: false
+logging:
+  path: ./logs/
+  level:
+    root: debug, error
+#logging:
+#  level: debug
+#  config: classpath:log4j2.yml
+#Caused by: ch.qos.logback.core.LogbackException: Unexpected filename extension of file [file:/F:/test/demo/target/classes/log4j2.yml]. Should be either .groovy or .xml

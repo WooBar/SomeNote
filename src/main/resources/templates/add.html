@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div>
+    <form id="form" method="post" action="/xuan">
+        <table id="table" style="width:100%;height:100%;table-layout:fixed;" class="nui-form-table">
+
+            <tr>
+                <td width="10%"></td>
+                <td width="15%">
+                    <label>您添加的食物1</label>
+                </td>
+                <td width="30%">
+                    <input type="text" name="food" required="true" maxlength="30" style="width:50%"/>
+                </td>
+            </tr>
+            <tr></tr>
+            <tr>
+                <td width="10%"></td>
+                <td width="15%">
+                    <input type="button" style="color: #20c997" id="new" value="新增"/>
+                </td>
+                <td width="30%">
+                    <input type="submit" style="color: #b21f2d" value="提交"/>
+                </td>
+            </tr>
+
+        </table>
+        <!--<input type="button" id="btn" value="显示" />-->
+    </form>
+
+</div>
+
+<div style="height: 30px"></div>
+
+<div>
+    <form action="/choose" method="post" style="height: 50% ;width: 100% ; border: #20c997 ; child-align: auto ; ">
+        <tr style="height: 100% ;width: 100% ; border: #20c997 ; ">
+            <td height="40%"  width="80%"></td>
+
+            <td height="40%" style="margin-right: auto" width="20%">
+                <input type="submit" id="index" value="返回首页"
+                       style="color: #20c997; width: 150px; height: 30px; font-size: 15px "/>
+            </td>
+        </tr>
+    </form>
+
+</div>
+
+
+<script type="text/javascript">
+    var rowWhere = 1;
+
+    document.getElementById('new').onclick = function () {
+        var table = document.getElementById("table");
+        var rows = table.rows.length;　　　　//new部分控件
+        var input1 = document.createElement('input');
+        var label1 = document.createElement('label');
+        //这里是将新列插在指定的位置，0代表第一列
+        var tr = table.insertRow(rowWhere);
+        rowWhere = rowWhere + 1;
+        var td1 = document.createElement('td');
+        var td2 = document.createElement('td');
+        var td3 = document.createElement('td');
+        //添加各个属性
+        label1.innerHTML = "您添加的食物" + rows;
+        input1.id = "xws.qs" + rows;
+        input1.setAttribute("name", "food");
+        input1.setAttribute("autocomplete", "off");
+        input1.setAttribute("maxlength", "30");
+        input1.setAttribute("placeholder", "输入你想吃啥");
+
+        td2.appendChild(label1);
+        td3.appendChild(input1);
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+    };
+
+    //最开始的时候是隐藏的，需点击才显示控件　　　　//写这个方法是测试我模块的需求，没啥意义
+    // document.getElementById('btn').onclick = function(){
+    //     document.getElementById('table').style.display="";
+    // };
+
+
+</script>
+
+</body>
+</html>

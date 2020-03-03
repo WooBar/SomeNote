@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.duanxp.module.choose.dao.ChooseDao">
+
+
+        <insert id="insert" >
+            insert into t_choose_location_info(id, create_time, status, location, ip, user_id, url, uri, food) values (
+            #{id},
+            #{createTime},
+            #{status},
+            #{location},
+            #{ip},
+            #{userId},
+            #{url},
+            #{uri},
+            #{food}
+            )
+        </insert>
+
+
+</mapper>
