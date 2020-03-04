@@ -95,7 +95,7 @@ public class HttpClientUtils {
         map.put("password", "");
 
         HttpClient client = getConnection();
-        HttpUriRequest post = getRequestMethod(map, "http://cnivi.com.cn/login", "post");
+        HttpUriRequest post = getRequestMethod(map, "http://cnivi.com.cn/login",  "post");
         HttpResponse response = client.execute(post);
 
         if (response.getStatusLine().getStatusCode() == 200) {
