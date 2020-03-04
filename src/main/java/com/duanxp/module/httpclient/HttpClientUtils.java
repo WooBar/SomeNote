@@ -66,7 +66,6 @@ public class HttpClientUtils {
         return httpClient;
     }
 
-
     public static HttpUriRequest getRequestMethod(Map<String, String> map, String url, String method) {
         List<NameValuePair> params = new ArrayList<NameValuePair>();
         Set<Map.Entry<String, String>> entrySet = map.entrySet();
