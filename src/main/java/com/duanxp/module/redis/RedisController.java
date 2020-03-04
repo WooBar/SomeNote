@@ -26,6 +26,8 @@ public class RedisController {
         stringRedisTemplate.opsForValue().set("test2", "1");
         String s = stringRedisTemplate.opsForValue().get("test2");
 
+
+
         System.out.println(s);
 
     }
