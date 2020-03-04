@@ -7,6 +7,7 @@ package com.duanxp.module.animal;
  */
 public class Animal {
     public int countLegs() {
+        System.out.println("");
         return 1;
     }
 }
