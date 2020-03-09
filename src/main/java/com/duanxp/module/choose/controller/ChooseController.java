@@ -3,6 +3,7 @@ package com.duanxp.module.choose.controller;
 import com.duanxp.common.ip.IpUtil;
 import com.duanxp.module.choose.pojo.ChooseLocationInfo;
 import com.duanxp.module.choose.service.ChooseService;
+import com.duanxp.module.dfa.SensitivewordFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,7 @@ import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * @author duanxp
@@ -111,8 +113,38 @@ public class ChooseController {
     public ModelAndView xuan2(HttpServletRequest request, HttpServletResponse response, String[] food){
 
         System.out.println(food);
+
+        SensitivewordFilter filter = new SensitivewordFilter();
+
         for (String s : food) {
             System.out.println(s);
+
+            Set<String> set = filter.getSensitiveWord(s, 1);
+            if (set.size() > 0) {
+                ModelAndView mv = new ModelAndView();
+                mv.setViewName("errorfood");
+
+                StringBuffer buffer = new StringBuffer();
+
+                for (String s1 : set) {
+                    switch (s1){
+                        case "段秀平":
+                            mv.addObject("food","小崽子，你要弑父吗？？？");
+                            return mv;
+                        case "duanxiuping":
+                            mv.addObject("food","小崽子，你要弑父吗？？？");
+                            return mv;
+                        case "DUANXIUPING":
+                            mv.addObject("food","小崽子，你要弑父吗？？？");
+                            return mv;
+                        default:
+
+                    }
+                    buffer.append(s1).append("  ");
+                }
+
+                mv.addObject("food","您提交了一下不可描述的食物...");
+            }
         }
 
         ModelAndView mv = new ModelAndView();

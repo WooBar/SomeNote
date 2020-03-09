@@ -151,7 +151,7 @@ public class SensitiveWordInit {
 		Set<String> set = null;
 
 		//读取文件  或者直接定义文件，或者查询词库
-		File file = new File("D:\\SensitiveWord.txt");
+		File file = new File("/tomcat/8086/SensitiveWord.txt");
 		InputStreamReader read = new InputStreamReader(new FileInputStream(file),ENCODING);
 		try {
 			//文件流是否存在
