@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.UnsupportedEncodingException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Random;
 import java.util.Set;
 
@@ -34,7 +35,7 @@ public class ChooseController {
     private HttpServletRequest httpServletRequest;
 
     @RequestMapping("choose")
-    public String create(){
+    public String create() {
 
         return "choose";
     }
@@ -49,26 +50,26 @@ public class ChooseController {
 
         //获取当前时间
         LocalDateTime time = LocalDateTime.now();
-        String replace = time.toString().replace("T", " ").substring(0,19);
+        String replace = time.toString().replace("T", " ").substring(0, 19);
         System.out.println(time);
         System.out.println(replace);
-        mv.addAttribute("time",replace);
+        mv.addAttribute("time", replace);
 
         //获取ip
         StringBuffer requestURL = httpServletRequest.getRequestURL();
         System.out.println(requestURL);
 
         String requestURI = httpServletRequest.getRequestURI();
-        System.out.println("uri "+requestURI);
+        System.out.println("uri " + requestURI);
 
         String contextPath = httpServletRequest.getContextPath();
-        System.out.println("url "+contextPath);
+        System.out.println("url " + contextPath);
 
         String ipAddr = com.duanxp.common.ip.IpUtil.getIpAddr(httpServletRequest);
-        System.out.println("ip "+ipAddr);
+        System.out.println("ip " + ipAddr);
 
         String ipAddress = IpUtil.getIpAddress(httpServletRequest);
-        System.out.println("ip "+ipAddress);
+        System.out.println("ip " + ipAddress);
 
 
 //        new Thread(new Runnable() {
@@ -93,59 +94,65 @@ public class ChooseController {
     }
 
 
-
     @RequestMapping("add")
-    public String add(){
+    public String add() {
 
 
         return "add";
     }
 
     @RequestMapping("xuan2")
-    public String xuan(HttpServletRequest request, HttpServletResponse response, String food){
+    public String xuan(HttpServletRequest request, HttpServletResponse response, String food) {
 
-        System.out.println("1 ------> "+food);
+        System.out.println("1 ------> " + food);
 
         return "add";
     }
 
     @RequestMapping("xuan")
-    public ModelAndView xuan2(HttpServletRequest request, HttpServletResponse response, String[] food){
+    public ModelAndView xuan2(HttpServletRequest request, HttpServletResponse response, String[] food) {
 
         System.out.println(food);
 
         SensitivewordFilter filter = new SensitivewordFilter();
-
+        Set<String> set = new HashSet<>();
         for (String s : food) {
             System.out.println(s);
 
-            Set<String> set = filter.getSensitiveWord(s, 1);
+            set = filter.getSensitiveWord(s, 1);
+            System.out.println("语句中包含敏感词的个数为：" + set.size() + "。包含：" + set);
+
             if (set.size() > 0) {
                 ModelAndView mv = new ModelAndView();
                 mv.setViewName("errorfood");
 
-                StringBuffer buffer = new StringBuffer();
+
 
                 for (String s1 : set) {
-                    switch (s1){
+                    switch (s1) {
                         case "段秀平":
-                            mv.addObject("food","小崽子，你要弑父吗？？？");
+                            mv.addObject("food", "小崽子，你要弑父吗？？？");
                             return mv;
                         case "duanxiuping":
-                            mv.addObject("food","小崽子，你要弑父吗？？？");
+                            mv.addObject("food", "小崽子，你要弑父吗？？？");
                             return mv;
                         case "DUANXIUPING":
-                            mv.addObject("food","小崽子，你要弑父吗？？？");
+                            mv.addObject("food", "小崽子，你要弑父吗？？？");
                             return mv;
                         default:
 
                     }
-                    buffer.append(s1).append("  ");
+
                 }
 
-                mv.addObject("food","您提交了一下不可描述的食物...");
+                mv.addObject("food", "您提交了一下不可描述的食物..." + set);
+                return mv;
             }
+
+
+
         }
+
 
         ModelAndView mv = new ModelAndView();
         mv.setViewName("final");
@@ -162,16 +169,16 @@ public class ChooseController {
         mv.addObject("info", result);
 
         LocalDateTime time = LocalDateTime.now();
-        String replace = time.toString().replace("T", " ").substring(0,19);
+        String replace = time.toString().replace("T", " ").substring(0, 19);
 
         System.out.println(replace);
-        mv.addObject("time",replace);
+        mv.addObject("time", replace);
 
         return mv;
     }
 
 
-    private static String chi(){
+    private static String chi() {
 
         //智能选餐系统 以下代码价值十个亿
         ArrayList<String> food = new ArrayList<>();
