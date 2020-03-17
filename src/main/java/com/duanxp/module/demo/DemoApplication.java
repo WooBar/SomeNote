@@ -4,6 +4,7 @@ import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
@@ -12,7 +13,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 @ComponentScan(basePackages = "com.duanxp.*")
 @EnableAspectJAutoProxy
 @MapperScan(basePackages = "com.duanxp.module.*.dao")
-
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 public class DemoApplication extends SpringBootServletInitializer {
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
