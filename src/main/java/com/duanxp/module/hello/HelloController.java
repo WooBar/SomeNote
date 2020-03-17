@@ -19,7 +19,7 @@ public class HelloController {
 
         System.out.println(s);
 
-        return "Hello world";
+        return "index";
     }
 
 
