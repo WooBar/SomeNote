@@ -21,16 +21,17 @@ spring:
     redis:
       time-to-live: -1 #毫秒
 
-  servlet:
-    session:
-      timeout: 30ms
+#  servlet:
+#    session:
+#      timeout: 30ms
   mvc:
-    #    view:
-    #      prefix: classpath:/templates/
-    #      suffix: .jsp
+#    view:
+#      prefix: /
+#      suffix: .html
     ##配置静态资源访问路径
     static-path-pattern: /webapp/**
-
+#  resources:
+#    static-locations: classpath:/static/**, classpath:/templates/**
 
 
   #开发时关闭页面缓存,不然无法看到实时页面

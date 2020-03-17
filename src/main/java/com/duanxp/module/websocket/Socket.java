@@ -1,5 +1,6 @@
 package com.duanxp.module.websocket;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 
 import javax.websocket.*;
@@ -13,8 +14,8 @@ import java.util.concurrent.CopyOnWriteArraySet;
  * @Author duanxp
  * @Date 2020/03/17 16:14
  */
-@Controller
-@ServerEndpoint("/websocket")
+@Component
+@ServerEndpoint("websocket")
 public class Socket {
 
     /**

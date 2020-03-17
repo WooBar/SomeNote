@@ -1,4 +1,4 @@
-package com.duanxp.module.demo;
+package com.duanxp;
 
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
