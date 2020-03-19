@@ -1,4 +1,29 @@
+server:
+  port: 8086
+#  servlet:
+#    context-path: /
+
+
 spring:
+
+  #开发时关闭页面缓存,不然无法看到实时页面
+  thymeleaf:
+    cache: false
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML5
+    encoding: UTF-8
+    servlet:
+      content-type: text/html
+  mvc:
+    view:
+      prefix: /WEB-INFO/JSP/
+      suffix: .jsp
+
+
+
+
+
 
   redis:
     host: 192.144.129.245
@@ -21,22 +46,21 @@ spring:
     redis:
       time-to-live: -1 #毫秒
 
-#  servlet:
-#    session:
-#      timeout: 30ms
-  mvc:
-#    view:
-#      prefix: /
-#      suffix: .html
+    #    servlet:
+    #      session:
+    #        timeout: 30ms
+
     ##配置静态资源访问路径
-    static-path-pattern: /webapp/**
-#  resources:
-#    static-locations: classpath:/static/**, classpath:/templates/**
+  #    static-path-pattern: /**
+  #    resources:
+  #      static-locations: classpath:/**
 
 
-  #开发时关闭页面缓存,不然无法看到实时页面
-  thymeleaf:
-    cache: false
+
+
+
+
+
   #配置Druid数据源
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
@@ -73,6 +97,11 @@ spring:
         reset-enable: true
         login-username: admin
         login-password: 123
+
+
+
+
+
     aop:
       proxy-target-class: true
       auto: true
@@ -118,10 +147,13 @@ pagehelper:
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
-server:
-  port: 8086
-  servlet:
-    context-path: /
+
+
+
+
+
+
+
 #  servlet:
 #    context-path: /index
 
@@ -158,7 +190,7 @@ management:
 logging:
   path: ./logs/
   level:
-    root: debug, error
+    root: debug, info, error
 #logging:
 #  level: debug
 #  config: classpath:log4j2.yml

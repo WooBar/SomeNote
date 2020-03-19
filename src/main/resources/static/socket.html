@@ -18,9 +18,12 @@
 
     var host = document.location.host;
 
+    debugger;
+
     if ('WebSocket' in window) {
         // alert("浏览器支持Websocket");
-        websocket = new WebSocket('ws://'+host+'/websocket');
+        websocket = new WebSocket('ws://'+host+'/ws');
+        console.log(host);
     } else {
         alert("该游览器不知此WebSocket");
     }

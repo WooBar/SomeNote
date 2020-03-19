@@ -20,7 +20,7 @@
         //创建异步对象
         var xhr = new XMLHttpRequest();
         //设置请求的类型及url
-        xhr.open('get', 'http://localhost:8086/socket/' + sendMessage);
+        xhr.open('get', 'http://localhost:8080/socket/' + sendMessage);
         //发送请求
         xhr.send();
         xhr.onreadystatechange = function () {
