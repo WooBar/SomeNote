@@ -18,7 +18,6 @@
 
     var host = document.location.host;
 
-    debugger;
 
     if ('WebSocket' in window) {
         // alert("浏览器支持Websocket");
@@ -44,7 +43,8 @@
 
     //连接发生错误的进行触发
     websocket.onerror = function (evt) {
-        console.log(evt);
+        console.log(evt);websocket = new WebSocket('ws://'+host+'/ws');
+
         console.log("WebSocketError!");
     };
     //当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。
@@ -69,5 +69,4 @@
     }
 
 </script>
-</body>
 </html>

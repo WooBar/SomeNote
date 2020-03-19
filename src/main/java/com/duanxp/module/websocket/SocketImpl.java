@@ -5,6 +5,7 @@ import org.springframework.stereotype.Component;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.concurrent.CopyOnWriteArraySet;
 
 /**
@@ -15,7 +16,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
  */
 @Component
 @ServerEndpoint(value = "/ws")
-public class Socket {
+public class SocketImpl implements Serializable {
 
     /**
      * websocket 客户端会话 通过Session 向客户端发送数据
@@ -25,7 +26,7 @@ public class Socket {
     /**
      * 线程安全set 存放每个客户端处理消息的对象
      */
-    private static CopyOnWriteArraySet<Socket> webSocketSet = new CopyOnWriteArraySet();
+    private static CopyOnWriteArraySet<SocketImpl> webSocketSet = new CopyOnWriteArraySet();
 
     /**
      * websocket 连接建立成功后进行调用
@@ -50,7 +51,7 @@ public class Socket {
      */
     @OnMessage
     public void onMessage(String message) throws IOException {
-        for (Socket socket : webSocketSet) {
+        for (SocketImpl socket : webSocketSet) {
             socket.session.getBasicRemote().sendText("自己嘎给自己嘎发的消息：" + message);
         }
     }
@@ -64,7 +65,7 @@ public class Socket {
     }
 
     public void sendMessage(String message) throws IOException {
-        for (Socket socket : webSocketSet) {
+        for (SocketImpl socket : webSocketSet) {
             socket.session.getBasicRemote().sendText(message);
         }
     }

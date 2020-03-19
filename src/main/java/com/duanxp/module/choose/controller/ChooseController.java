@@ -46,6 +46,12 @@ public class ChooseController {
         return "socket";
     }
 
+    @RequestMapping("/controllerTest")
+    public String page(){
+
+        return "controllerTest";
+    }
+
     @RequestMapping(value = "/chifan")
     public String chifan(Model mv) throws UnsupportedEncodingException {
 

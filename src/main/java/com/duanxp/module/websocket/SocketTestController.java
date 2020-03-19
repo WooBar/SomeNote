@@ -19,7 +19,7 @@ import java.io.IOException;
 public class SocketTestController {
 
     @Autowired
-    private Socket socket;
+    private SocketImpl socket;
 
     @GetMapping("/{message}")
     public void sendMessage(@PathVariable("message") String message) throws IOException {
