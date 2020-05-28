@@ -72,8 +72,8 @@ spring:
     druid:
       initial-size: 5  # 初始化大 小
       min-idle: 5  # 最小
-      max-active: 100  # 最大
-      max-wait: 60000  # 连接超时时间
+      max-active: 1000  # 最大
+      max-wait: 120000  # 连接超时时间
       time-between-eviction-runs-millis: 60000  # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
       min-evictable-idle-time-millis: 300000  # 指定一个空闲连接最少空闲多久后可被清除，单位是毫秒
       validationQuery: SELECT 'x'

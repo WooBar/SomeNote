@@ -240,6 +240,7 @@ public class ChooseController {
         food.add("饿死吧");
         food.add("请联系管理员，领取一顿毒打");
         food.add("面包");
+        food.add("鸭脖");
 
         int size = food.size();
 

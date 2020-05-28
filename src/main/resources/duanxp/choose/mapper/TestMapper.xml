@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.duanxp.module.test.dao.TestDao">
+
+   <insert id="insert" >
+
+   </insert>
+    <insert id="insertBatch">
+        insert into t_test_info ( name, pass, type, flag) values
+        <foreach collection="list" separator="," item="item">
+            ( #{item.name},#{item.pass},#{item.type},#{item.flag})
+        </foreach>
+    </insert>
+
+
+</mapper>

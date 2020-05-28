@@ -12,7 +12,7 @@ import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;
 
 @SpringBootApplication
-@ComponentScan(basePackages = "com.*.**")
+@ComponentScan(basePackages = "com.**.**")
 @EnableAspectJAutoProxy
 @MapperScan(basePackages = "com.duanxp.module.*.dao")
 //@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
