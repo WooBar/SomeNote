@@ -13,11 +13,14 @@ public class TestOptional {
 
     public static void main(String[] args) {
 
-        Person person = new Person();
-        person.setAge(2);
+        Person person = null;
+//        person.setAge(2);
 
+        System.out.println(person);
         //01 get方法
-        Optional.ofNullable(person).get();
+//        Optional.ofNullable(person).get();
+
+        System.out.println(person);
 
         //02 判读是否为空
         if (Optional.ofNullable(person).isPresent()){
