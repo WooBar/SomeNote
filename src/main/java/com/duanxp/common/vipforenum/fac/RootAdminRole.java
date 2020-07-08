@@ -18,7 +18,7 @@ public class RootAdminRole implements RoleOperation {
 
     @Override
     public String ope() {
-        System.out.println("ROOT  权限");
-        return null;
+//        System.out.println("ROOT  权限");
+        return "order list";
     }
 }
